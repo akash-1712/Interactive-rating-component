@@ -5,6 +5,9 @@ var star = null;
 const Bottom = (props) => {
   const starHandler = useCallback(
     (id, x = "ok") => {
+      if (x === "click") {
+        star = id;
+      }
       const validId = [];
       for (var i = 0; i < props.star.length; ) {
         if (x !== "click" && id === -1) {
@@ -21,7 +24,7 @@ const Bottom = (props) => {
       const className = style.star_list;
       const classNames = style.star_list_active + " " + className;
       const mouseEvent =
-        x !== "click" ? starSelectHandler.bind(null, -1, "leave") : () => {};
+        x !== "click" ? starHandler.bind(null, -1, "leave") : () => {};
       const data = props.star.map((data, index) => (
         <li
           {...(validId[index] === data
@@ -29,8 +32,8 @@ const Bottom = (props) => {
             : { className: className })}
           key={data}
           id={data}
-          onClick={starSelectHandler.bind(null, data, "click")}
-          onMouseOver={starSelectHandler.bind(null, data, "over")}
+          onClick={starHandler.bind(null, data, "click")}
+          onMouseOver={starHandler.bind(null, data, "over")}
           onMouseLeave={mouseEvent}
         >
           <p>{data}</p>
@@ -40,27 +43,15 @@ const Bottom = (props) => {
     },
     [props.star]
   );
-  const starSelectHandler = useCallback(
-    (id, x = "ok") => {
-      if (x === "click") {
-        star = id;
-        starHandler(id, "click");
-        return;
-      }
-      starHandler(id, "ok");
-      return;
-    },
-    [starHandler]
-  );
 
   const data = props.star.map((data) => (
     <li
       className={style.star_list}
       key={data}
       id={data}
-      onClick={starSelectHandler.bind(null, data, "click")}
-      onMouseOver={starSelectHandler.bind(null, data, "over")}
-      onMouseLeave={starSelectHandler.bind(null, -1, "leave")}
+      onClick={starHandler.bind(null, data, "click")}
+      onMouseOver={starHandler.bind(null, data, "over")}
+      onMouseLeave={starHandler.bind(null, -1, "leave")}
     >
       <p>{data}</p>
     </li>
