@@ -1,0 +1,12 @@
+@import "../index.module.scss";
+.content {
+  &_medium_question h1 {
+    font-size: 1.5rem;
+    color: $White;
+    margin-bottom: 0.5rem;
+  }
+  &_medium_question p {
+    font-size: 13px;
+    color: rgb(243, 237, 237);
+  }
+}
