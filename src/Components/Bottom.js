@@ -5,7 +5,6 @@ var star = null;
 const Bottom = (props) => {
   const starHandler = useCallback(
     (id, x = "ok") => {
-      console.log(id);
       if (x === "click") {
         star = id;
       }
