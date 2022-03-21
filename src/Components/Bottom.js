@@ -5,6 +5,7 @@ var star = null;
 const Bottom = (props) => {
   const starHandler = useCallback(
     (id, x = "ok") => {
+      console.log(id);
       if (x === "click") {
         star = id;
       }
@@ -33,7 +34,7 @@ const Bottom = (props) => {
           key={data}
           id={data}
           onClick={starHandler.bind(null, data, "click")}
-          onMouseOver={starHandler.bind(null, data, "over")}
+          onMouseEnter={starHandler.bind(null, data, "over")}
           onMouseLeave={mouseEvent}
         >
           <p>{data}</p>
@@ -50,7 +51,7 @@ const Bottom = (props) => {
       key={data}
       id={data}
       onClick={starHandler.bind(null, data, "click")}
-      onMouseOver={starHandler.bind(null, data, "over")}
+      onMouseEnter={starHandler.bind(null, data, "over")}
       onMouseLeave={starHandler.bind(null, -1, "leave")}
     >
       <p>{data}</p>
